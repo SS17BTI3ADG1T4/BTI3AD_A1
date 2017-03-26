@@ -1,7 +1,5 @@
-package ADP_1;
-
 /**
- * 
+ *
  * @author Nils Eggebrecht
  *
  * @class der Counter ist für die Aufwandsanalyse.
