@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 9e27506697cbdc813d963f6c1d273540f33532f0
 /**
  *
  * @author Nils Eggebrecht
