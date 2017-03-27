@@ -7,7 +7,8 @@ public class Elem <T>{
     private T data;
     public int index;
 
-    /* getters */
+
+	/* getters */
     public Elem<T> getNext() {
         return next;
     }
