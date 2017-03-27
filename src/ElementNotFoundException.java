@@ -1,4 +1,4 @@
-package a2c;
+
 
 public class ElementNotFoundException extends Exception {
 

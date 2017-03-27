@@ -1,19 +1,19 @@
-package a2c;
 
-import ADP_1.Pos;
 
-public class SingleLinkedList<T> {
+
+
+public class SingleLinkedList<T> implements OwnList<T>{
 
 	private int Size=0;
-	Elem startElem = new Elem(null);
-	Elem endElem = new Elem(null);
+	Elem startElem = new Elem();
+	Elem endElem = new Elem();
 	
 	
 	/**
 	 * Constructor
 	 */
 	public SingleLinkedList() {
-		startElem.setNextElement(endElem);
+		startElem.setNext(endElem);
 	}
 	/**
 	 * Adds an  new Element to the List
@@ -22,8 +22,8 @@ public class SingleLinkedList<T> {
 	 */
 	public void add(Elem<T> insertElem) throws ElementNotFoundException{
 		Elem<T> prev = findPrevious(endElem);
-		insertElem.setNextElement(prev.getNextElement());
-		prev.setNextElement(insertElem);
+		insertElem.setNext(prev.getNext());
+		prev.setNext(insertElem);
 		Size++;
 	}
 
@@ -37,13 +37,13 @@ public class SingleLinkedList<T> {
 		int index =0;
 		Elem<T> prev = startElem;
 		while(index+1<insertPos.get()){
-			prev=prev.getNextElement();
+			prev=prev.getNext();
 			index++;
 		}
 		if(index+1>=Size) throw new IndexOutOfBoundsException();
-		Elem<T> after = prev.getNextElement();
-		prev.setNextElement(insertElem);
-		insertElem.setNextElement(after);
+		Elem<T> after = prev.getNext();
+		prev.setNext(insertElem);
+		insertElem.setNext(after);
 		Size++;
 		
 	}
@@ -56,16 +56,16 @@ public class SingleLinkedList<T> {
 	public void delete(Pos deletePos) throws IndexOutOfBoundsException {
 		if(deletePos.get()>=Size) throw new IndexOutOfBoundsException();
 		Elem<T> elem = startElem;
-		Elem<T> prev = new Elem<T>(null);
+		Elem<T> prev = new Elem<T>();
 		 Pos position = new Pos(0);
-	        while (elem.getNextElement() != endElem && !position.equals(deletePos)){
+	        while (elem.getNext() != endElem && !position.equals(deletePos)){
 	        	position.set(position.get()+1);//erhöhe position um 1
 	        	prev = elem; // setze als vorheriges elem das aktuelle
-	        	elem.getNextElement(); //gehe ein elem weiter
+	        	elem.getNext(); //gehe ein elem weiter
 	        }
-	        Elem<T> temp = elem.getNextElement(); //nimm das element nach dem zu löschendem
-	        elem.setObj(null); //entferne den Inhalt des zu löschenden Obj
-	        prev.setNextElement(temp);// setzte den Zeiger von dem elem vor dem zu löschenden auf das elem nach dem gelöschten
+	        Elem<T> temp = elem.getNext(); //nimm das element nach dem zu löschendem
+	        elem.setData(null); //entferne den Inhalt des zu löschenden Obj
+	        prev.setNext(temp);// setzte den Zeiger von dem elem vor dem zu löschenden auf das elem nach dem gelöschten
 	           
 	}
 
@@ -75,12 +75,14 @@ public class SingleLinkedList<T> {
 	 * @param deleteKey
 	 * @throws ElementNotFoundException 
 	 */
-	public void delete(Object deleteKey) throws ElementNotFoundException {
-		Elem<T> prev = findPrevious(new Elem<T>(deleteKey));
-		Elem<T> after = prev.getNextElement().getNextElement();
-		prev.getNextElement().setObj(null);
-		prev.getNextElement().setNextElement(null);
-		prev.setNextElement(after);
+	public void delete(T deleteKey) throws ElementNotFoundException {
+		Elem<T> temp = new Elem();
+		temp.setData(deleteKey);
+		Elem<T> prev = findPrevious(temp);
+		Elem<T> after = prev.getNext().getNext();
+		prev.getNext().setData(null);
+		prev.getNext().setNext(null);
+		prev.setNext(after);
 		
 	}
 	
@@ -94,10 +96,10 @@ public class SingleLinkedList<T> {
 	private Elem<T> findPrevious(Elem<T> exakt) throws ElementNotFoundException{
 		Elem<T> elem = startElem;
 		addStopAtEnd(exakt);
-		while(!elem.getNextElement().equals(exakt.getObj())){
-			elem=elem.getNextElement();
+		while(!elem.getNext().equals(exakt.getData())){
+			elem=elem.getNext();
 		}
-		if(elem.getNextElement().equals(endElem.getObj())){
+		if(elem.getNext().equals(endElem.getData())){
 			removeStopAtEnd();
 			throw new ElementNotFoundException();
 			
@@ -120,9 +122,9 @@ public class SingleLinkedList<T> {
 	        while (!elem.equals(findElem)){
 	        	position.set(position.get()+1);//erhöhe position um 1
 	        	
-	        	elem.getNextElement(); //gehe ein elem weiter
+	        	elem.getNext(); //gehe ein elem weiter
 	        }
-	        if(elem.getNextElement().equals(endElem)){
+	        if(elem.getNext().equals(endElem)){
 	        	removeStopAtEnd();
 	        	throw new ElementNotFoundException();
 	        	
@@ -143,10 +145,10 @@ public class SingleLinkedList<T> {
 		Elem<T> elem = startElem;
 		
 		 Pos position = new Pos(0);
-	        while (elem.getNextElement() != endElem && !position.equals(retrievePos)){
+	        while (elem.getNext() != endElem && !position.equals(retrievePos)){
 	        	position.set(position.get()+1);//erhöhe position um 1
 	        	
-	        	elem.getNextElement(); //gehe ein elem weiter
+	        	elem.getNext(); //gehe ein elem weiter
 	        }
 		return elem;
 	}
@@ -161,7 +163,7 @@ public class SingleLinkedList<T> {
 		//finde das Element vor dem endElement
 		elem=findPrevious(endElem);
 		//setze den Zeiger dieses Elements auf das erste element der otherList nach dem start elem.
-		elem.setNextElement(otherList.getStartElem().getNextElement());
+		elem.setNext(otherList.getStartElem().getNext());
 		//ändere das endElement auf das endElem der anderen Liste
 		endElem=otherList.getEndElem();
 		
@@ -172,17 +174,17 @@ public class SingleLinkedList<T> {
 	 * @param newElement
 	 */
 	private void addStopAtStart(Elem<T> newElement){
-		Elem<T> elem = startElem.getNextElement();
-		startElem.setNextElement(newElement);
-		newElement.setNextElement(elem);
+		Elem<T> elem = startElem.getNext();
+		startElem.setNext(newElement);
+		newElement.setNext(elem);
 	}
 	
 	/**
 	 * Removes a Stop Element
 	 */
 	private void removeStopAtStart(){
-		Elem<T> elem = startElem.getNextElement().getNextElement();
-		startElem.setNextElement(elem);
+		Elem<T> elem = startElem.getNext().getNext();
+		startElem.setNext(elem);
 	}
 	
 	/**
@@ -191,11 +193,11 @@ public class SingleLinkedList<T> {
 	 */
 	private void addStopAtEnd(Elem<T> newElem){
 		Elem<T> elem = startElem;
-		while(!elem.getNextElement().equals(endElem)){
-			elem=elem.getNextElement();
+		while(!elem.getNext().equals(endElem)){
+			elem=elem.getNext();
 		}
-		elem.setNextElement(newElem);
-		newElem.setNextElement(endElem);
+		elem.setNext(newElem);
+		newElem.setNext(endElem);
 	}
 	
 	/**
@@ -203,10 +205,10 @@ public class SingleLinkedList<T> {
 	 */
 	private void removeStopAtEnd(){
 		Elem<T> elem = startElem;
-		while(!elem.getNextElement().getNextElement().equals(endElem)){
-			elem = elem.getNextElement();
+		while(!elem.getNext().getNext().equals(endElem)){
+			elem = elem.getNext();
 		}
-		elem.setNextElement(endElem);
+		elem.setNext(endElem);
 	}
 	
 	
@@ -241,6 +243,11 @@ public class SingleLinkedList<T> {
 	public int size() {
 		// TODO Auto-generated method stub
 		return Size;
+	}
+	@Override
+	public void concat(OwnList<T> otherList) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
