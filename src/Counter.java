@@ -1,4 +1,3 @@
-package ADP_1;
 
 /**
  * 
@@ -8,7 +7,7 @@ package ADP_1;
  */
 public class Counter {
 	/**
-	 * counter ist der zaehlwert fuer den Counter
+	 * counter ist der Zaehlwert fuer den Counter
 	 */
 	private int counter;
 
