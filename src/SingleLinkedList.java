@@ -36,7 +36,7 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	public void insert(Pos insertPos, Elem<T> insertElem) throws IndexOutOfBoundsException {
 		int index =0;
 		Elem<T> prev = startElem;
-		while(index+1<insertPos.get()){
+		while(index+1<insertPos.getPos()){
 			prev=prev.getNext();
 			index++;
 		}
@@ -54,18 +54,18 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	 * @throws IndexOutOfBoundsException
 	 */
 	public void delete(Pos deletePos) throws IndexOutOfBoundsException {
-		if(deletePos.get()>=Size) throw new IndexOutOfBoundsException();
+		if(deletePos.getPos()>=Size) throw new IndexOutOfBoundsException();
 		Elem<T> elem = startElem;
 		Elem<T> prev = new Elem<T>();
 		 Pos position = new Pos(0);
 	        while (elem.getNext() != endElem && !position.equals(deletePos)){
-	        	position.set(position.get()+1);//erhöhe position um 1
+	        	position.set(position.getPos()+1);//erhï¿½he position um 1
 	        	prev = elem; // setze als vorheriges elem das aktuelle
 	        	elem.getNext(); //gehe ein elem weiter
 	        }
-	        Elem<T> temp = elem.getNext(); //nimm das element nach dem zu löschendem
-	        elem.setData(null); //entferne den Inhalt des zu löschenden Obj
-	        prev.setNext(temp);// setzte den Zeiger von dem elem vor dem zu löschenden auf das elem nach dem gelöschten
+	        Elem<T> temp = elem.getNext(); //nimm das element nach dem zu lï¿½schendem
+	        elem.setData(null); //entferne den Inhalt des zu lï¿½schenden Obj
+	        prev.setNext(temp);// setzte den Zeiger von dem elem vor dem zu lï¿½schenden auf das elem nach dem gelï¿½schten
 	           
 	}
 
@@ -120,7 +120,7 @@ public class SingleLinkedList<T> implements OwnList<T>{
 		addStopAtEnd(findElem);
 		 Pos position = new Pos(0);
 	        while (!elem.equals(findElem)){
-	        	position.set(position.get()+1);//erhöhe position um 1
+	        	position.set(position.getPos()+1);//erhï¿½he position um 1
 	        	
 	        	elem.getNext(); //gehe ein elem weiter
 	        }
@@ -141,12 +141,12 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	 * @throws IndexOutOfBoundsException
 	 */
 	public Elem<T> retrieve(Pos retrievePos) throws IndexOutOfBoundsException {
-		if(retrievePos.get()>=Size)throw new IndexOutOfBoundsException();
+		if(retrievePos.getPos()>=Size)throw new IndexOutOfBoundsException();
 		Elem<T> elem = startElem;
 		
 		 Pos position = new Pos(0);
 	        while (elem.getNext() != endElem && !position.equals(retrievePos)){
-	        	position.set(position.get()+1);//erhöhe position um 1
+	        	position.set(position.getPos()+1);//erhï¿½he position um 1
 	        	
 	        	elem.getNext(); //gehe ein elem weiter
 	        }
@@ -164,7 +164,7 @@ public class SingleLinkedList<T> implements OwnList<T>{
 		elem=findPrevious(endElem);
 		//setze den Zeiger dieses Elements auf das erste element der otherList nach dem start elem.
 		elem.setNext(otherList.getStartElem().getNext());
-		//ändere das endElement auf das endElem der anderen Liste
+		//ï¿½ndere das endElement auf das endElem der anderen Liste
 		endElem=otherList.getEndElem();
 		
 	}

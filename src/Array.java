@@ -52,19 +52,19 @@ public class Array<T> implements OwnList<T> {
 	 */
 	@Override
 	public void insert(Pos insertPos, Elem<T> insertElem) throws IndexOutOfBoundsException {
-		if (insertPos.get() >= 0 && insertPos.get() <= size && insertElem.getData() != null) {
+		if (insertPos.getPos() >= 0 && insertPos.getPos() <= size && insertElem.getData() != null) {
 			if (size == array.length) {
 				resize(array);
 				counter.counterUp(1);
 			}
-			if (array[insertPos.get()] != null) {
+			if (array[insertPos.getPos()] != null) {
 				counter.counterUp(1);
-				for (int i = size; i > insertPos.get(); i--) {
+				for (int i = size; i > insertPos.getPos(); i--) {
 					array[i] = array[i - 1];
 					counter.counterUp(1);
 				}
 			}
-			array[insertPos.get()] = insertElem.getData();
+			array[insertPos.getPos()] = insertElem.getData();
 			size++;
 			counter.counterUp(2);
 		} else {
@@ -79,9 +79,9 @@ public class Array<T> implements OwnList<T> {
 	 */
 	@Override
 	public void delete(Pos deletePos) throws IndexOutOfBoundsException {
-		if (deletePos.get() >= 0 && deletePos.get() < size) {
+		if (deletePos.getPos() >= 0 && deletePos.getPos() < size) {
 			counter.counterUp(1);
-			for (int i = deletePos.get(); i < size - 1; i++) {
+			for (int i = deletePos.getPos(); i < size - 1; i++) {
 				array[i] = array[i + 1];
 				counter.counterUp(1);
 			}
@@ -118,9 +118,9 @@ public class Array<T> implements OwnList<T> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public Elem<T> retrieve(Pos retrievePos) throws IndexOutOfBoundsException {
-		if (retrievePos.get() >= 0 && retrievePos.get() < size) {
+		if (retrievePos.getPos() >= 0 && retrievePos.getPos() < size) {
 			counter.counterUp(1);
-			return (Elem<T>) array[retrievePos.get()];
+			return (Elem<T>) array[retrievePos.getPos()];
 		} else {
 			throw new IndexOutOfBoundsException(
 					"Element ist null oder die Position ist nicht im gueltigern Bereich (von 0 bis size)");
