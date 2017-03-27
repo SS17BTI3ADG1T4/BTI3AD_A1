@@ -76,11 +76,11 @@ public class DoubleLinkedListTest {
         Elem<Integer> temp= new Elem<Integer>();
         try {
             temp.setData(0);
-            assertEquals(doubleLinkedList.find(temp).getPos(), 0);
+            assertEquals(0, doubleLinkedList.find(temp).getPos());
             temp.setData(TEST_SIZE/2);
-            assertEquals(doubleLinkedList.find(temp).getPos(), TEST_SIZE/2);
+            assertEquals(TEST_SIZE/2, doubleLinkedList.find(temp).getPos());
             temp.setData(TEST_SIZE-1);
-            assertEquals(doubleLinkedList.find(temp).getPos(), TEST_SIZE-1);
+            assertEquals(TEST_SIZE-1, doubleLinkedList.find(temp).getPos());
         } catch(ElementNotFoundException e){
             excpetion_handled = true;
         }
