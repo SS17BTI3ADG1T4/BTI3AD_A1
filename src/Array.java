@@ -1,6 +1,3 @@
-
-//import static org.junit.Assert.assertEquals;
-
 /**
  * Diese Klasse stellt eine Liste in einem Array dar.
  * 
@@ -9,86 +6,7 @@
  */
 
 public class Array<T> implements OwnList<T> {
-	// System.out.println(arr.K);
-	// public static void main(String[] args) throws IndexOutOfBoundsException {
-	//
-	// System.out.println("Maintest");
-	// Array<Integer> arr = new Array<Integer>(2, 2);
-	// // Array<Integer> arr1 = new Array<Integer>(2, 2);
-	//
-	// System.out.printf("size= %d \n",arr.size);
-	// System.out.printf("laenge= %d\n\n",arr.getArray().length);
-	//
-	// Elem <Integer> element = new Elem<Integer>();
-	// Pos pos = new Pos(0);
-	// element.setData(6);
-	// arr.insert(pos, element);
-	// // arr.insert(0,10);
-	// System.out.printf("size= %d \n",arr.size);
-	// // System.out.printf("laenge= %d\n\n",arr.getArray().length);
-	// // arr.insert(0,20);
-	// // System.out.printf("size= %d \n",arr.size);
-	// // System.out.printf("laenge= %d\n\n",arr.getArray().length);
-	// // arr.insert(0,15);
-	// // System.out.printf("size= %d \n",arr.size);
-	// // System.out.printf("laenge= %d\n\n",arr.getArray().length);
-	// // arr.insert(0,30);
-	// // System.out.printf("size= %d \n",arr.size);
-	// // System.out.printf("laenge= %d\n\n",arr.getArray().length);
-	// // arr.insert(0,45);
-	// // System.out.printf("size= %d \n",arr.size);
-	// // System.out.printf("laenge= %d\n\n",arr.getArray().length);
-	// arr.delete(pos);
-	// System.out.printf("size= %d \n",arr.size);
-	// // System.out.println(arr.find(10));
-	// // System.out.println(arr.find(20));
-	// // System.out.println(arr.find(15));
-	// // System.out.println(arr.find(30));
-	// // System.out.println(arr.find(45));
-	// // System.out.println();
-	// // System.out.println(arr.find(10));
-	// // System.out.println(arr.retrieve(0));
-	// // arr.delete(0);
-	// // System.out.println(arr.find(10));
-	// // System.out.println(arr.find(20));
-	// // System.out.println(arr.find(15));
-	// // System.out.println(arr.find(30));
-	// // System.out.println(arr.find(45));
-	// // System.out.println(arr.retrieve(0));
-	// // System.out.printf("arr size= %d \n", arr.size);
-	// // System.out.printf("arr laenge= %d\n\n", arr.getArray().length);
-	// // arr.insert(0, 10);
-	// // arr.insert(0, 10);
-	// // System.out.println(arr.retrieve(0));
-	// // System.out.println(arr.retrieve(1));
-	// // System.out.printf("arr size= %d \n", arr.size);
-	// // System.out.printf("arr laenge= %d\n\n", arr.getArray().length);
-	// //
-	// // arr1.insert(0, 50);
-	// // System.out.println("arr1 elem 0:");
-	// // System.out.println(arr1.retrieve(0));
-	// //
-	// // System.out.printf("arr size= %d \n", arr.size);
-	// // System.out.printf("arr laenge= %d\n\n", arr.getArray().length);
-	// //
-	// // System.out.printf("arr1 size= %d \n", arr1.size);
-	// // System.out.printf("arr1 laenge= %d\n\n", arr1.getArray().length);
-	// // System.out.println("concat");
-	// // arr.concat(arr1);
-	// // System.out.printf("arr1 size= %d \n", arr1.size);
-	// // System.out.printf("arr1 laenge= %d\n\n", arr1.getArray().length);
-	// // System.out.println("arr elem 2:");
-	// // System.out.println(arr.retrieve(2));
-	// //
-	// // System.out.println("arr1 elem 0:");
-	// // System.out.println(arr1.retrieve(0));
-	// //
-	// // System.out.printf("arr size= %d \n", arr.size);
-	// // System.out.printf("arr laenge= %d\n\n", arr.getArray().length);
-	// // System.out.println();
-	// //
-	// }
-
+	
 	private final int K;
 	private int size;
 	private Object[] array;
