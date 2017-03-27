@@ -28,6 +28,7 @@ public class Pos {
     public Elem getRefElem() {
         return refElem;
     }
+
     /*setters */
     public void set(int pos){
         this.pos = pos;
