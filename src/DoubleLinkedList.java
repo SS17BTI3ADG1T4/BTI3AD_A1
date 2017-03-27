@@ -137,6 +137,7 @@ public class DoubleLinkedList<T> implements OwnList{
 
     @Override
     public int size() {
+        count();
         return size;
     }
 
