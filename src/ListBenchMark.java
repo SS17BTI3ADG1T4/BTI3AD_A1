@@ -36,10 +36,10 @@ public class ListBenchMark {
                 listUnderTest = new DoubleLinkedList<Integer>(counter);
                 otherList = new DoubleLinkedList<Integer>();
                 break;
-//            case (2):
-//                listUnderTest = new Array<Integer>(size, counter);
-//                otherList = new Array<Integer>(size);
-//                break;
+            case (2):
+                listUnderTest = new Array<Integer>(10, size, counter);
+                otherList = new Array<Integer>(10,size);
+                break;
             default:
                 return;
         }

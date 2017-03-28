@@ -6,22 +6,27 @@
  */
 
 public class Array<T> implements OwnList<T> {
-	
+
 	private final int K;
 	private int size;
-	private Object[] array;
+	private Elem<T>[] array;
 	protected Counter counter;
 
 	/**
 	 * Konstruktor
 	 */
+
 	public Array(int K, int length) {
 		this.K = K;
 		this.size = 0;
-		this.array = new Object[length];
+		this.array = new Elem[length];
 		this.counter = new Counter();
 	}
 
+	public Array(int K, int length, Counter counter) {
+		this(K, length);
+		this.counter = counter;
+	}
 	/*
 	 * Getter
 	 * 
@@ -39,8 +44,8 @@ public class Array<T> implements OwnList<T> {
 	 * Diese Methode vergrößert das Array um K. (K wird einmalig beim erzeugen
 	 * des Objektes gesetzt)
 	 */
-	private void resize(Object[] array) {
-		Object[] newArray = new Object[array.length + K];
+	private void resize(Elem<T>[] array) {
+		Elem[] newArray = new Elem[array.length + K];
 		counter.counterUp(2); // Array erzeugen + laenge berechnen
 		System.arraycopy(this.array, 0, newArray, 0, array.length);
 		counter.counterUp(array.length);
@@ -64,7 +69,7 @@ public class Array<T> implements OwnList<T> {
 					counter.counterUp(1);
 				}
 			}
-			array[insertPos.getPos()] = insertElem.getData();
+			array[insertPos.getPos()] = insertElem;
 			size++;
 			counter.counterUp(2);
 		} else {
@@ -94,6 +99,11 @@ public class Array<T> implements OwnList<T> {
 		}
 	}
 
+	@Override
+	public void delete(Elem<T> key) throws IndexOutOfBoundsException {
+		delete(find(key));
+	}
+
 	/**
 	 * Diese Methode sucht nach einem Elem<T> und gibt die Pos von dem Element
 	 * aus.
@@ -103,9 +113,9 @@ public class Array<T> implements OwnList<T> {
 		Pos position = new Pos(-1);
 		for (int i = 0; i < size; i++) {
 			counter.counterUp(1); // i erhoehen
-			if (array[i].equals(findElem.getData())) {
+			if (array[i].equals(findElem)) {
 				counter.counterUp(1);
-				position.set(findElem.index);
+				position.set(i);
 			}
 		}
 		return position;
@@ -115,7 +125,7 @@ public class Array<T> implements OwnList<T> {
 	 * Diese Methode liefert den Inhalt an der Stelle der gewünschten Position
 	 * aus.
 	 */
-	@SuppressWarnings("unchecked")
+
 	@Override
 	public Elem<T> retrieve(Pos retrievePos) throws IndexOutOfBoundsException {
 		if (retrievePos.getPos() >= 0 && retrievePos.getPos() < size) {
@@ -153,4 +163,36 @@ public class Array<T> implements OwnList<T> {
 		counter.counterUp(1);
 		return this.size;
 	}
+/**
+	public static void main(String[] args) {
+
+
+		System.out.println("Maintest");
+
+		Array<Integer> arr = new Array<Integer>(2, 2);
+		Array<Integer> arr1 = new Array<Integer>(2, 2);
+
+		arr.insert(new Pos(0), new Elem<Integer>(0));
+		arr.insert(new Pos(1), new Elem<Integer>(1));
+		arr.insert(new Pos(2), new Elem<Integer>(2));
+		arr.insert(new Pos(3), new Elem<Integer>(3));
+		arr.insert(new Pos(4), new Elem<Integer>(4));
+
+		arr1.insert(new Pos(0), new Elem<Integer>(0));
+		arr1.insert(new Pos(1), new Elem<Integer>(1));
+		arr1.insert(new Pos(2), new Elem<Integer>(2));
+		arr1.insert(new Pos(3), new Elem<Integer>(3));
+		arr1.insert(new Pos(4), new Elem<Integer>(4));
+		
+		arr.concat(arr1);
+		System.out.println(new Pos(5).getPos());
+		System.out.println(arr.size);
+		
+
+		arr.delete(new Pos(0));
+		arr.delete(new Elem<Integer>(3));
+		System.out.println(arr.find(new Elem<Integer>(2)).getPos());
+		System.out.println(arr.find(new Elem<Integer>(4)).getPos());
+	}
+	*/
 }
