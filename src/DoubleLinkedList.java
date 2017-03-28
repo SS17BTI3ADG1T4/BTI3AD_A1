@@ -104,6 +104,7 @@ public class DoubleLinkedList<T> implements OwnList{
                 throw new IndexOutOfBoundsException();
             }
             count();
+            count();
             result = headDummy.getNext();
             count();
             for(int i = 0; i < pos; i++) {
