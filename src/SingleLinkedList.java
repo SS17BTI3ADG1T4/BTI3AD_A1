@@ -137,6 +137,7 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	 * @param deleteKey
 	 * @throws ElementNotFoundException 
 	 */
+	@Override
 	public void delete(T deleteKey) throws ElementNotFoundException {
 		Elem<T> temp = new Elem(deleteKey);
 		count();
