@@ -5,8 +5,6 @@ public class Elem <T>{
     private Elem<T> next = null;
     private Elem<T> prev = null;
     private T data;
-    public int index;
-
 
 	public Elem() {
 	}
