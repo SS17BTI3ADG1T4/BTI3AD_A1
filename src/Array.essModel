@@ -1,0 +1,54 @@
+[Box: ::Default - ::<<Unknown>>::Exception]
+X=619
+Y=40
+
+[Box: ::Default - ::Default::Array]
+X=430
+Y=707
+
+[Box: ::Default - ::Default::Counter]
+X=1645
+Y=40
+
+[Box: ::Default - ::Default::DoubleLinkedList]
+X=225
+Y=707
+
+[Box: ::Default - ::Default::DoubleLinkedListTest]
+X=1440
+Y=40
+
+[Box: ::Default - ::Default::Elem]
+X=20
+Y=707
+
+[Box: ::Default - ::Default::ElementNotFoundException]
+X=635
+Y=707
+
+[Box: ::Default - ::Default::ListBenchMark]
+X=1235
+Y=40
+
+[Box: ::Default - ::Default::OwnList]
+X=1045
+Y=707
+
+[Box: ::Default - ::Default::Pos]
+X=1030
+Y=40
+
+[Box: ::Default - ::Default::SingleLinkedList]
+X=840
+Y=707
+
+[Box: ::Default - ::Default::SingleLinkedListTest]
+X=824
+Y=40
+
+[Diagram: ::Default]
+OffsetX=0
+OffsetY=975
+Visibility=0
+ShowAssoc=1
+

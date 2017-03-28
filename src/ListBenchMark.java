@@ -4,9 +4,20 @@
 
 import java.lang.Math;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ListBenchMark.
+ */
 public class ListBenchMark {
+    
+    /** The counter. */
     static Counter counter;
 
+    /**
+     * The main method.
+     *
+     * @param args the arguments
+     */
     public static void main (String[] args){
         counter = new Counter();
 
@@ -17,6 +28,12 @@ public class ListBenchMark {
         }
     }
 
+    /**
+     * Do bench mark test.
+     *
+     * @param exp the exp
+     * @param type the type
+     */
     private static void doBenchMarkTest(int exp, int type){
         Elem<Integer> temp;
         OwnList<Integer> listUnderTest;
@@ -118,6 +135,11 @@ public class ListBenchMark {
         System.out.printf("\t%12d\n", results[0]);
     }
 
+    /**
+     * Prints the results array.
+     *
+     * @param results the results
+     */
     private static void printResultsArray(long[] results){
         final String format = "\t%12s%12s%12s\n";
         System.out.printf(format, "first", "middle", "last");

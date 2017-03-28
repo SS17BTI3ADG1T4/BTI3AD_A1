@@ -3,11 +3,16 @@ import static org.junit.Assert.*;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SingleLinkedListTest.
+ */
 public class SingleLinkedListTest {
 	
 	/**
-	 * Adds an ELement in a empty List
-	 * @throws ElementNotFoundException
+	 * Adds an ELement in a empty List.
+	 *
+	 * @throws ElementNotFoundException the element not found exception
 	 */
 	@Test
 	public void testAdd() throws ElementNotFoundException {
@@ -18,8 +23,9 @@ public class SingleLinkedListTest {
 	}
 
 	/**
-	 * Inserts an ELement in a empty List
-	 * @throws ElementNotFoundException
+	 * Inserts an ELement in a empty List.
+	 *
+	 * @throws ElementNotFoundException the element not found exception
 	 */
 	@Test
 	public void testInsert() throws ElementNotFoundException {
@@ -28,9 +34,11 @@ public class SingleLinkedListTest {
 		List.insert(new Pos(0), elem);
 		assertEquals(List.find(elem).getPos(), 0);
 	}
+	
 	/**
-	 * Inserts an ELement in a filled List at a position
-	 * @throws ElementNotFoundException
+	 * Inserts an ELement in a filled List at a position.
+	 *
+	 * @throws ElementNotFoundException the element not found exception
 	 */
 	@Test
 	public void testInsert2() throws ElementNotFoundException {
@@ -46,7 +54,7 @@ public class SingleLinkedListTest {
 	}
 
 	/**
-	 * Try delete by pos if pos not exists
+	 * Try delete by pos if pos not exists.
 	 */
 	@Test(expected =IndexOutOfBoundsException.class)
 	public void testDeletePos() {
@@ -56,7 +64,7 @@ public class SingleLinkedListTest {
 	}
 	
 	/**
-	 * Try delete if List is empty
+	 * Try delete if List is empty.
 	 */
 	@Test(expected =IndexOutOfBoundsException.class)
 	public void testDeletePos2(){
@@ -66,8 +74,9 @@ public class SingleLinkedListTest {
 	}
 	
 	/**
-	 * Try to delete a List with an Single Element
-	 * @throws ElementNotFoundException
+	 * Try to delete a List with an Single Element.
+	 *
+	 * @throws ElementNotFoundException the element not found exception
 	 */
 	@Test
 	public void testDeletePos3() throws ElementNotFoundException{
@@ -78,33 +87,36 @@ public class SingleLinkedListTest {
 	}
 
 	/**
-	 * Try to Delete an Element with a key 
-	 * @throws ElementNotFoundException
+	 * Try to Delete an Element with a key .
+	 *
+	 * @throws ElementNotFoundException the element not found exception
 	 */
 	@Test
 	public void testDeleteT() throws ElementNotFoundException {
 		SingleLinkedList List = new SingleLinkedList<>();
 		Elem elem = new Elem("Test");
 		List.add(elem);
-		List.delete("Test");
+		List.delete(elem);
 		assertEquals(List.size(), 0);
 	}
 	
 	/**
-	 * Try to Delete an Element with a not existing key 
-	 * @throws ElementNotFoundException
+	 * Try to Delete an Element with a not existing key .
+	 *
+	 * @throws ElementNotFoundException the element not found exception
 	 */
 	@Test(expected = ElementNotFoundException.class)
 	public void testDeleteT2() throws ElementNotFoundException {
 		SingleLinkedList List = new SingleLinkedList<>();
-		List.delete("foo");
+		List.delete(new Elem());
 		
 	}
 
 	
 	/**
 	 * Find a single Pos in List with one ELem.
-	 * @throws ElementNotFoundException
+	 *
+	 * @throws ElementNotFoundException the element not found exception
 	 */
 	@Test
 	public void testFind() throws ElementNotFoundException {
@@ -118,8 +130,7 @@ public class SingleLinkedListTest {
 	}
 
 	/**
-	 * Find a Pos of an not existing Element
-	 * @throws ElementNotFoundException
+	 * Find a Pos of an not existing Element.
 	 */
 	@Test
 	public void testFind2()   {
@@ -132,8 +143,9 @@ public class SingleLinkedListTest {
 	
 	/**
 	 * Retrieve an Element by position
-	 * List has Element
-	 * @throws ElementNotFoundException
+	 * List has Element.
+	 *
+	 * @throws ElementNotFoundException the element not found exception
 	 */
 	@Test
 	public void testRetrieve() throws ElementNotFoundException {
@@ -143,10 +155,12 @@ public class SingleLinkedListTest {
 		Elem elem2 = List.retrieve(new Pos(0));
 		assertEquals("Test", elem2.getData());
 	}
+	
 	/**
 	 * Retrieve an Element by position
-	 * List has no Element
-	 * @throws ElementNotFoundException
+	 * List has no Element.
+	 *
+	 * @throws ElementNotFoundException the element not found exception
 	 */
 	@Test(expected = IndexOutOfBoundsException.class)
 	public void testRetrieve2() throws ElementNotFoundException {
@@ -157,8 +171,9 @@ public class SingleLinkedListTest {
 
 	
 	/**
-	 * Tries to concatenate a filled List and a Empty List2
-	 * @throws ElementNotFoundException
+	 * Tries to concatenate a filled List and a Empty List2.
+	 *
+	 * @throws ElementNotFoundException the element not found exception
 	 */
 	@Test
 	public void testConcatSingleLinkedListOfT2() throws ElementNotFoundException {
@@ -172,8 +187,9 @@ public class SingleLinkedListTest {
 	}
 	
 	/**
-	 * Tries to concatenate a empty List and a filled List2
-	 * @throws ElementNotFoundException
+	 * Tries to concatenate a empty List and a filled List2.
+	 *
+	 * @throws ElementNotFoundException the element not found exception
 	 */
 	@Test
 	public void testConcatSingleLinkedListOfT3() throws ElementNotFoundException {
@@ -187,8 +203,9 @@ public class SingleLinkedListTest {
 	}
 	
 	/**
-	 * Tries to concatenate 2 filled Lists
-	 * @throws ElementNotFoundException
+	 * Tries to concatenate 2 filled Lists.
+	 *
+	 * @throws ElementNotFoundException the element not found exception
 	 */
 	@Test
 	public void testConcatSingleLinkedListOfT4() throws ElementNotFoundException {
@@ -205,7 +222,7 @@ public class SingleLinkedListTest {
 	}
 
 	/**
-	 * Size of Empty List
+	 * Size of Empty List.
 	 */
 	@Test
 	public void testSize() {
@@ -214,8 +231,9 @@ public class SingleLinkedListTest {
 	}
 	
 	/**
-	 * Size of Filled List
-	 * @throws ElementNotFoundException 
+	 * Size of Filled List.
+	 *
+	 * @throws ElementNotFoundException the element not found exception
 	 */
 	@Test
 	public void testSize2() throws ElementNotFoundException {
@@ -224,6 +242,11 @@ public class SingleLinkedListTest {
 		assertEquals(List.size(), 1);
 	}
 	
+	/**
+	 * Gets the end elem.
+	 *
+	 * @return the end elem
+	 */
 	@Test
 	public void getEndElem(){
 		SingleLinkedList List = new SingleLinkedList();

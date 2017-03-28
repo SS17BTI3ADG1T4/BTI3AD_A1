@@ -4,13 +4,30 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class DoubleLinkedListTest.
+ */
 public class DoubleLinkedListTest {
+    
+    /** The test size. */
     private final int TEST_SIZE = 10;
+    
+    /** The my counter. */
     Counter myCounter;
+    
+    /** The double linked list. */
     DoubleLinkedList<Integer> doubleLinkedList;
+    
+    /** The temp. */
     Elem<Integer> temp;
+    
+    /** The excpetion handled. */
     boolean excpetion_handled = false;
 
+    /**
+     * Setup.
+     */
     @Before
     public void setup(){
         excpetion_handled = false;
@@ -23,6 +40,9 @@ public class DoubleLinkedListTest {
         }
     }
 
+    /**
+     * Test double linked list insert.
+     */
     @Test
     public void testDoubleLinkedListInsert(){
         /* check first, middle and last element */
@@ -49,6 +69,9 @@ public class DoubleLinkedListTest {
         assertTrue(excpetion_handled);
     }
 
+    /**
+     * Test double linked list delete.
+     */
     @Test
     public void testDoubleLinkedListDelete(){
         /* delete first, middle and last element and check size */
@@ -71,6 +94,9 @@ public class DoubleLinkedListTest {
         assertTrue(excpetion_handled);
     }
 
+    /**
+     * Test double linked list find.
+     */
     @Test
     public void testDoubleLinkedListFind(){
         Elem<Integer> temp= new Elem<Integer>();
