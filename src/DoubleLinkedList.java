@@ -1,12 +1,26 @@
+// TODO: Auto-generated Javadoc
 /**
  * Created by marble on 3/26/17.
+ *
+ * @param <T> the generic type
  */
 public class DoubleLinkedList<T> implements OwnList{
+    
+    /** The counter. */
     private Counter  counter = null;
+    
+    /** The head dummy. */
     protected Elem<T> headDummy = null;
+    
+    /** The last dummy. */
     protected Elem<T> lastDummy = null;
+    
+    /** The size. */
     private int size = 0;
 
+    /**
+     * Instantiates a new double linked list.
+     */
     DoubleLinkedList() {
         headDummy = new Elem<>();
         count();
@@ -23,11 +37,19 @@ public class DoubleLinkedList<T> implements OwnList{
         count();
     }
 
+    /**
+     * Instantiates a new double linked list.
+     *
+     * @param counter the counter
+     */
     DoubleLinkedList(Counter counter) {
         this();
         this.counter = counter;
     }
 
+    /* (non-Javadoc)
+     * @see OwnList#insert(Pos, Elem)
+     */
     @Override
     public void insert(Pos insertPos, Elem insertElem) throws IndexOutOfBoundsException {
         Elem<T> refElem = insertPos.getRefElem();
@@ -51,6 +73,9 @@ public class DoubleLinkedList<T> implements OwnList{
         count();
     }
 
+    /* (non-Javadoc)
+     * @see OwnList#delete(Pos)
+     */
     @Override
     public void delete(Pos deletePos) throws IndexOutOfBoundsException {
         Elem<T> refElem = deletePos.getRefElem();
@@ -68,11 +93,17 @@ public class DoubleLinkedList<T> implements OwnList{
         count();
     }
 
+    /* (non-Javadoc)
+     * @see OwnList#delete(Elem)
+     */
     @Override
     public void delete(Elem key) throws ElementNotFoundException {
 
     }
 
+    /* (non-Javadoc)
+     * @see OwnList#find(Elem)
+     */
     @Override
     public Pos find(Elem findElem) throws ElementNotFoundException {
         Pos resultPos = new Pos(headDummy);
@@ -98,6 +129,9 @@ public class DoubleLinkedList<T> implements OwnList{
         return resultPos;
     }
 
+    /* (non-Javadoc)
+     * @see OwnList#retrieve(Pos)
+     */
     @Override
     public Elem retrieve(Pos retrievePos) throws IndexOutOfBoundsException {
         Elem<T> result = retrievePos.getRefElem();
@@ -123,6 +157,9 @@ public class DoubleLinkedList<T> implements OwnList{
         return result;
     }
 
+    /* (non-Javadoc)
+     * @see OwnList#concat(OwnList)
+     */
     @Override
     public void concat(OwnList otherList) {
         if (otherList.getClass().equals(this.getClass())) {
@@ -141,12 +178,18 @@ public class DoubleLinkedList<T> implements OwnList{
         count();
     }
 
+    /* (non-Javadoc)
+     * @see OwnList#size()
+     */
     @Override
     public int size() {
         count();
         return size;
     }
 
+    /**
+     * Count.
+     */
     private void count() {
         if(counter != null){
             counter.counterUp(1);

@@ -2,17 +2,30 @@
 
 
 
+/**
+ * The Class SingleLinkedList.
+ *
+ * @param <T> the generic type
+ */
 public class SingleLinkedList<T> implements OwnList<T>{
-	//TODO Size umschreiben sodass er durchzählt?
+	
+	/** The Size. */
+	
 	private int Size=0;
+	
+	/** The start elem. */
 	private Elem startElem;
+	
+	/** The end elem. */
 	private Elem endElem ;
+	
+	/** The counter. */
 	private Counter  counter = null;
 	
 	
 	
 	/**
-	 * Constructor
+	 * Constructor.
 	 */
 	public SingleLinkedList() {
 		startElem = new Elem();
@@ -23,14 +36,21 @@ public class SingleLinkedList<T> implements OwnList<T>{
 		count();
 	}
 	
+	/**
+	 * Instantiates a new single linked list.
+	 *
+	 * @param counter the counter
+	 */
 	public SingleLinkedList(Counter counter){
 		this();
 		this.counter = counter;
 	}
+	
 	/**
-	 * Adds an  new Element to the List
-	 * @param insertElem
-	 * @throws ElementNotFoundException
+	 * Adds an  new Element to the List.
+	 *
+	 * @param insertElem the insert elem
+	 * @throws ElementNotFoundException the element not found exception
 	 */
 	public void add(Elem<T> insertElem) throws ElementNotFoundException{
 		if(Size==0){
@@ -55,10 +75,11 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	}
 
 	/**
-	 * Inserts an Element at a given Positon
+	 * Inserts an Element at a given Positon.
+	 *
 	 * @param insertPos position of the Insertion
 	 * @param insertElem Element to be inserted
-	 * @throws IndexOutOfBoundsException
+	 * @throws IndexOutOfBoundsException the index out of bounds exception
 	 */
 	public void insert(Pos insertPos, Elem insertElem) throws IndexOutOfBoundsException {
 		if(insertPos.getPos()>Size){
@@ -90,9 +111,10 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	}
 
 	/**
-	 * Deletes an Element at a given position
-	 * @param deletePos
-	 * @throws IndexOutOfBoundsException
+	 * Deletes an Element at a given position.
+	 *
+	 * @param deletePos the delete pos
+	 * @throws IndexOutOfBoundsException the index out of bounds exception
 	 */
 	public void delete(Pos deletePos) throws IndexOutOfBoundsException {
 		if(deletePos.getPos()>Size){
@@ -133,12 +155,13 @@ public class SingleLinkedList<T> implements OwnList<T>{
 
 	/**
 	 * Deletes an Element by a given Key
-	 * The Key is the data of the Element
-	 * @param deleteKey
-	 * @throws ElementNotFoundException 
+	 * The Key is the data of the Element.
+	 *
+	 * @param deleteKey the delete key
+	 * @throws ElementNotFoundException the element not found exception
 	 */
 	@Override
-	public void delete(T deleteKey) throws ElementNotFoundException {
+	public void delete(Elem deleteKey) throws ElementNotFoundException {
 		Elem<T> temp =deleteKey;
 		count();
 		Elem<T> prev = startElem;
@@ -165,10 +188,11 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	}
 	
 	/**
-	 * Finds the previous Element to a given Element(exakt) and returns the previous one
+	 * Finds the previous Element to a given Element(exakt) and returns the previous one.
+	 *
 	 * @param exakt the Element after the previous element
 	 * @return the previous element
-	 * @throws ElementNotFoundException
+	 * @throws ElementNotFoundException the element not found exception
 	 */
 	
 	private Elem<T> findPrevious(Elem<T> exakt) throws ElementNotFoundException{
@@ -197,10 +221,9 @@ public class SingleLinkedList<T> implements OwnList<T>{
 
 	/**
 	 * Finds the position of an Element with a Stop element at the end of the list.
-	 * 
-	 * @param findElem
+	 *
+	 * @param findElem the find elem
 	 * @return position of the element that was looked for or (-1 if the Element is not in List)
-	 * @throws ElementNotFoundException
 	 */
 	public Pos find(Elem findElem) {		
 		if(this.Size==0){
@@ -236,10 +259,11 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	}
 
 	/**
-	 * Returns the Element at a given at a given Position
+	 * Returns the Element at a given at a given Position.
+	 *
 	 * @param retrievePos position of the element in List
 	 * @return the Element at a Position
-	 * @throws IndexOutOfBoundsException
+	 * @throws IndexOutOfBoundsException the index out of bounds exception
 	 */
 	public Elem<T> retrieve(Pos retrievePos) throws IndexOutOfBoundsException {
 		if(retrievePos.getPos()>=Size){
@@ -261,9 +285,9 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	}
 
 	/**
-	 * Concatenates this List with an other List
+	 * Concatenates this List with an other List.
+	 *
 	 * @param otherList the List that you want to be concatenated
-	 * @throws ElementNotFoundException 
 	 */
 	@Override
 	public void concat(OwnList<T> otherList) {
@@ -315,6 +339,12 @@ public class SingleLinkedList<T> implements OwnList<T>{
 		
 	}
 	
+	/**
+	 * Update size.
+	 *
+	 * @param a the a
+	 * @param b the b
+	 */
 	private void updateSize(int a, int b) {
 		Size = a+b;	
 		count();
@@ -323,8 +353,9 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	
 	
 	/**
-	 * Adds a Stop Element at the End
-	 * @param newElem
+	 * Adds a Stop Element at the End.
+	 *
+	 * @param newElem the new elem
 	 */
 	private void addStopAtEnd(Elem<T> newElem){
 		Elem<T> elem = startElem;
@@ -341,7 +372,7 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	}
 	
 	/**
-	 * removes the Stop element at the end
+	 * removes the Stop element at the end.
 	 */
 	private void removeStopAtEnd(){
 		Elem<T> elem = startElem;
@@ -360,6 +391,11 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	
 
 	
+	/**
+	 * Gets the start elem.
+	 *
+	 * @return the start elem
+	 */
 	public Elem<T> getStartElem() {
 		count();
 		return startElem;
@@ -368,6 +404,11 @@ public class SingleLinkedList<T> implements OwnList<T>{
 
 
 
+	/**
+	 * Sets the start elem.
+	 *
+	 * @param startElem the new start elem
+	 */
 	public void setStartElem(Elem<T> startElem) {
 		count();
 		this.startElem = startElem;
@@ -375,6 +416,11 @@ public class SingleLinkedList<T> implements OwnList<T>{
 
 
 
+	/**
+	 * Gets the end elem.
+	 *
+	 * @return the end elem
+	 */
 	public Elem<T> getEndElem() {
 		count();
 		return endElem;
@@ -382,6 +428,11 @@ public class SingleLinkedList<T> implements OwnList<T>{
 
 
 
+	/**
+	 * Sets the end elem.
+	 *
+	 * @param endElem the new end elem
+	 */
 	public void setEndElem(Elem<T> endElem) {
 		count();
 		this.endElem = endElem;
@@ -389,12 +440,18 @@ public class SingleLinkedList<T> implements OwnList<T>{
 
 
 
+	/* (non-Javadoc)
+	 * @see OwnList#size()
+	 */
 	public int size() {
 		count();
 		// TODO Auto-generated method stub
 		return Size;
 	}
 	
+	/**
+	 * Count.
+	 */
 	private void count() {
         if(counter != null){
             counter.counterUp(1);
