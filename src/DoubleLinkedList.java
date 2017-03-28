@@ -69,6 +69,11 @@ public class DoubleLinkedList<T> implements OwnList{
     }
 
     @Override
+    public void delete(Elem key) throws ElementNotFoundException {
+
+    }
+
+    @Override
     public Pos find(Elem findElem) throws ElementNotFoundException {
         Pos resultPos = new Pos(headDummy);
         count();
