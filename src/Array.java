@@ -116,6 +116,7 @@ public class Array<T> implements OwnList<T> {
 			if (array[i].equals(findElem)) {
 				counter.counterUp(1);
 				position.set(i);
+				return position;
 			}
 		}
 		return position;
