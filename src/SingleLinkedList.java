@@ -180,24 +180,29 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	 * @param otherList the List that you want to be concatenated
 	 * @throws ElementNotFoundException 
 	 */
-	public int concat(SingleLinkedList<T> otherList) throws ElementNotFoundException {
-		if(Size==0)return -1;
-		if(otherList.Size==0)return -2;
-		Elem elem =startElem;
-		int counter =0;
-		while(elem.getNext()!=(endElem)){
-			elem = elem.getNext();
-			counter++;
+	@Override
+	public void concat(OwnList<T> otherList) {
+		if(otherList.getClass().equals(this.getClass())){
+			if(Size==0);
+			if(otherList.size()==0);
+			Elem elem =startElem;
+			int counter =0;
+			while(elem.getNext()!=(endElem)){
+				elem = elem.getNext();
+				counter++;
+			}
+			System.out.println("Counter:" + counter);
+			//setze den Zeiger dieses Elements auf das erste element der otherList nach dem start elem.
+			
+			elem.setNext(((SingleLinkedList)otherList).getStartElem().getNext());
+			//ändere das endElement auf das endElem der anderen Liste
+			endElem=((SingleLinkedList)otherList).getEndElem();
+			updateSize(Size, otherList.size());
+		
+		}else{
+			//TODO 
 		}
-		System.out.println("Counter:" + counter);
-		//setze den Zeiger dieses Elements auf das erste element der otherList nach dem start elem.
 		
-		elem.setNext(otherList.getStartElem().getNext());
-		//ändere das endElement auf das endElem der anderen Liste
-		endElem=otherList.getEndElem();
-		updateSize(Size, otherList.size());
-		
-		return 0;
 	}
 	
 	private void updateSize(int a, int b) {
@@ -280,11 +285,7 @@ public class SingleLinkedList<T> implements OwnList<T>{
 		// TODO Auto-generated method stub
 		return Size;
 	}
-	@Override
-	public void concat(OwnList<T> otherList) {
-		
-		
-	}
+	
 
 
 }
