@@ -22,7 +22,7 @@ public class ListBenchMark {
         counter = new Counter();
 
         for(int j = 0; j <= 2; j++) {
-            for (int i = 1; i <= 4; i++) {
+            for (int i = 1; i <= 5; i++) {
                 doBenchMarkTest(i, j);
             }
         }
