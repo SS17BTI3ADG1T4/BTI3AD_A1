@@ -14,10 +14,6 @@ public class Elem <T>{
     
     /** The data. */
     private T data;
-    
-    /** The index. */
-    public int index;
-
 
 	/**
 	 * Instantiates a new elem.
