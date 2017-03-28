@@ -30,7 +30,7 @@ public interface OwnList<T> {
      * @param deleteElemy the delete elemy
      * @throws ElementNotFoundException the element not found exception
      */
-    void delete(Elem deleteElemy) throws ElementNotFoundException;
+    void delete(Elem<T> deleteElemy) throws ElementNotFoundException;
     
     /**
      * Find.
