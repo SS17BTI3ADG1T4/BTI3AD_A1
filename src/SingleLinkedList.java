@@ -183,8 +183,13 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	@Override
 	public void concat(OwnList<T> otherList) {
 		if(otherList.getClass().equals(this.getClass())){
-			if(Size==0);
-			if(otherList.size()==0);
+			if(Size==0 && otherList.size()==0) return;
+			if(otherList.size()==0)return;
+			if(Size==0 && otherList.size()!=0){
+				startElem = ((SingleLinkedList)otherList).getStartElem();
+				endElem = ((SingleLinkedList)otherList).getEndElem();
+				Size=otherList.size();
+			}
 			Elem elem =startElem;
 			int counter =0;
 			while(elem.getNext()!=(endElem)){
