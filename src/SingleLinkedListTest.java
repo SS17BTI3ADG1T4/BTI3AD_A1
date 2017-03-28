@@ -1,77 +1,243 @@
 import static org.junit.Assert.*;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class SingleLinkedListTest {
-
+	
+	/**
+	 * Adds an ELement in a empty List
+	 * @throws ElementNotFoundException
+	 */
 	@Test
-	public void testSingleLinkedList() {
-		fail("Not yet implemented");
+	public void testAdd() throws ElementNotFoundException {
+		SingleLinkedList List = new SingleLinkedList<>();
+		Elem elem = new Elem("Test");
+		List.add(elem);
+		assertEquals(List.size(), 1);
 	}
 
+	/**
+	 * Inserts an ELement in a empty List
+	 * @throws ElementNotFoundException
+	 */
 	@Test
-	public void testAdd() {
-		fail("Not yet implemented");
+	public void testInsert() throws ElementNotFoundException {
+		SingleLinkedList List = new SingleLinkedList<>();
+		Elem elem = new Elem("Test");
+		List.insert(new Pos(0), elem);
+		assertEquals(List.find(elem).getPos(), 0);
+	}
+	/**
+	 * Inserts an ELement in a filled List at a position
+	 * @throws ElementNotFoundException
+	 */
+	@Test
+	public void testInsert2() throws ElementNotFoundException {
+		SingleLinkedList List = new SingleLinkedList<>();
+		for(int i =0; i<10; i++){
+			List.add(new Elem(String.valueOf(i)));
+		}
+		int oldSize=List.size();
+		Elem elem= new Elem("Test");
+		List.insert(new Pos(5), elem);
+		System.out.println(List.size());
+		assertEquals(oldSize+1, List.size());
 	}
 
-	@Test
-	public void testInsert() {
-		fail("Not yet implemented");
-	}
-
-	@Test
+	/**
+	 * Try delete by pos if pos not exists
+	 */
+	@Test(expected =IndexOutOfBoundsException.class)
 	public void testDeletePos() {
-		fail("Not yet implemented");
+		SingleLinkedList List = new SingleLinkedList<>();
+		List.delete(new Pos(10));
+		
 	}
-
+	
+	/**
+	 * Try delete if List is empty
+	 */
+	@Test(expected =IndexOutOfBoundsException.class)
+	public void testDeletePos2(){
+		SingleLinkedList List = new SingleLinkedList<>();
+		List.delete(new Pos(0));
+		
+	}
+	
+	/**
+	 * Try to delete a List with an Single Element
+	 * @throws ElementNotFoundException
+	 */
 	@Test
-	public void testDeleteT() {
-		fail("Not yet implemented");
+	public void testDeletePos3() throws ElementNotFoundException{
+		SingleLinkedList List = new SingleLinkedList<>();
+		List.add(new Elem("test"));
+		List.delete(new Pos(0));
+		assertEquals(List.size(), 0);
 	}
 
+	/**
+	 * Try to Delete an Element with a key 
+	 * @throws ElementNotFoundException
+	 */
 	@Test
-	public void testFind() {
-		fail("Not yet implemented");
+	public void testDeleteT() throws ElementNotFoundException {
+		SingleLinkedList List = new SingleLinkedList<>();
+		Elem elem = new Elem("Test");
+		List.add(elem);
+		List.delete("Test");
+		assertEquals(List.size(), 0);
+	}
+	
+	/**
+	 * Try to Delete an Element with a not existing key 
+	 * @throws ElementNotFoundException
+	 */
+	@Test(expected = ElementNotFoundException.class)
+	public void testDeleteT2() throws ElementNotFoundException {
+		SingleLinkedList List = new SingleLinkedList<>();
+		List.delete("foo");
+		
 	}
 
+	
+	/**
+	 * Find a single Pos in List with one ELem.
+	 * @throws ElementNotFoundException
+	 */
 	@Test
-	public void testRetrieve() {
-		fail("Not yet implemented");
+	public void testFind() throws ElementNotFoundException {
+		SingleLinkedList List = new SingleLinkedList<>();
+		Elem elem = new Elem("Test");
+		System.out.println("find test");
+		List.add(elem);		
+		Pos pos = new Pos(-100);
+		pos=List.find(elem);			
+		assertEquals(pos.getPos(), 0);
 	}
 
+	/**
+	 * Find a Pos of an not existing Element
+	 * @throws ElementNotFoundException
+	 */
 	@Test
-	public void testConcatSingleLinkedListOfT() {
-		fail("Not yet implemented");
+	public void testFind2()   {
+		SingleLinkedList List = new SingleLinkedList<>();
+		Elem elem = new Elem("Test");
+		
+		Pos pos = List.find(elem);
+		assertEquals(pos.getPos(), -1);
 	}
-
+	
+	/**
+	 * Retrieve an Element by position
+	 * List has Element
+	 * @throws ElementNotFoundException
+	 */
 	@Test
-	public void testGetStartElem() {
-		fail("Not yet implemented");
+	public void testRetrieve() throws ElementNotFoundException {
+		SingleLinkedList List = new SingleLinkedList<>();
+		Elem elem = new Elem("Test");
+		List.add(elem);
+		Elem elem2 = List.retrieve(new Pos(0));
+		assertEquals("Test", elem2.getData());
+	}
+	/**
+	 * Retrieve an Element by position
+	 * List has no Element
+	 * @throws ElementNotFoundException
+	 */
+	@Test(expected = IndexOutOfBoundsException.class)
+	public void testRetrieve2() throws ElementNotFoundException {
+		SingleLinkedList List = new SingleLinkedList<>();
+		Elem elem2 = List.retrieve(new Pos(0));
+		
 	}
 
+	/**
+	 * Tries to concatenate two empty Lists
+	 * @throws ElementNotFoundException
+	 */
 	@Test
-	public void testSetStartElem() {
-		fail("Not yet implemented");
+	public void testConcatSingleLinkedListOfT() throws ElementNotFoundException {
+		SingleLinkedList List = new SingleLinkedList<>();
+		SingleLinkedList List2 = new SingleLinkedList<>();
+		assertEquals(new Integer(List.concat(List2)),  new Integer(-1));
 	}
-
+	
+	/**
+	 * Tries to concatenate a filled List and a Empty List2
+	 * @throws ElementNotFoundException
+	 */
 	@Test
-	public void testGetEndElem() {
-		fail("Not yet implemented");
+	public void testConcatSingleLinkedListOfT2() throws ElementNotFoundException {
+		SingleLinkedList List = new SingleLinkedList<>();
+		Elem elem= new Elem<>("Test");
+		List.add(elem);
+		SingleLinkedList List2 = new SingleLinkedList<>();
+		
+		assertEquals(new Integer(List.concat(List2)), new Integer(-2));
 	}
-
+	
+	/**
+	 * Tries to concatenate a empty List and a filled List2
+	 * @throws ElementNotFoundException
+	 */
 	@Test
-	public void testSetEndElem() {
-		fail("Not yet implemented");
+	public void testConcatSingleLinkedListOfT3() throws ElementNotFoundException {
+		SingleLinkedList List = new SingleLinkedList<>();
+		Elem elem= new Elem<>("Test");
+	
+		SingleLinkedList List2 = new SingleLinkedList<>();
+		List2.add(elem);
+		
+		assertEquals(new Integer(List.concat(List2)), new Integer(-1));
+	}
+	
+	/**
+	 * Tries to concatenate 2 filled Lists
+	 * @throws ElementNotFoundException
+	 */
+	@Test
+	public void testConcatSingleLinkedListOfT4() throws ElementNotFoundException {
+		SingleLinkedList List = new SingleLinkedList<>();
+		SingleLinkedList List2 = new SingleLinkedList<>();
+		for(int i =0; i<10; i++){
+			List.add(new Elem("liste1:"+i));
+			List2.add(new Elem("liste2:"+i));
+		}
+		System.out.println(List.size());
+		System.out.println(List2.size());
+		List.concat(List2);
+		assertEquals(20, List.size());
 	}
 
+	/**
+	 * Size of Empty List
+	 */
 	@Test
 	public void testSize() {
-		fail("Not yet implemented");
+		SingleLinkedList List = new SingleLinkedList<>();
+		assertEquals(List.size(), 0);
 	}
-
+	
+	/**
+	 * Size of Filled List
+	 * @throws ElementNotFoundException 
+	 */
 	@Test
-	public void testConcatOwnListOfT() {
-		fail("Not yet implemented");
+	public void testSize2() throws ElementNotFoundException {
+		SingleLinkedList List = new SingleLinkedList<>();
+		List.add(new Elem());
+		assertEquals(List.size(), 1);
 	}
+	
+	@Test
+	public void getEndElem(){
+		SingleLinkedList List = new SingleLinkedList();
+		System.out.println("Endelem: "+List.getEndElem());
+	}
+	
 
 }

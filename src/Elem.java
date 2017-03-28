@@ -42,6 +42,13 @@ public class Elem <T>{
         this.data = data;
     }
 
+    //Compares the Data element of two elements
+    public boolean equals(Elem other){
+    	if(other.getData().equals(this.getData())){
+    		return true;
+    	}else return false;
+    	
+    }
     @Override
     public boolean equals(Object other){
         if(other.getClass().equals(this.getClass())){
