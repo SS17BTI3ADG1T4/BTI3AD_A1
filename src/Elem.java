@@ -8,6 +8,14 @@ public class Elem <T>{
     public int index;
 
 
+	public Elem() {
+	}
+
+    
+	public Elem(T data) {
+		this.data = data;
+	}
+
 	/* getters */
     public Elem<T> getNext() {
         return next;
