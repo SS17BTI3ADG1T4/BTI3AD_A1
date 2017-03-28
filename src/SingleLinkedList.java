@@ -7,6 +7,8 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	private int Size=0;
 	private Elem startElem;
 	private Elem endElem ;
+	private Counter  counter = null;
+	
 	
 	
 	/**
@@ -14,8 +16,16 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	 */
 	public SingleLinkedList() {
 		startElem = new Elem();
+		count();
 		endElem = new Elem();
+		count();
 		startElem.setNext(endElem);
+		count();
+	}
+	
+	public SingleLinkedList(Counter counter){
+		this();
+		this.counter = counter;
 	}
 	/**
 	 * Adds an  new Element to the List
@@ -25,16 +35,23 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	public void add(Elem<T> insertElem) throws ElementNotFoundException{
 		if(Size==0){
 			startElem.setNext(insertElem);
-			insertElem.setNext(endElem);	
+			count();
+			insertElem.setNext(endElem);
+			count();
 		}else{
 			Elem elem = startElem;
+			count();
 			while(elem.getNext()!=endElem){
 				elem=elem.getNext();
+				count();
 			}
 			elem.setNext(insertElem);
+			count();
 			insertElem.setNext(endElem);
+			count();
 		}
 		Size++;
+		count();
 	}
 
 	/**
@@ -44,18 +61,32 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	 * @throws IndexOutOfBoundsException
 	 */
 	public void insert(Pos insertPos, Elem insertElem) throws IndexOutOfBoundsException {
-		if(insertPos.getPos()>Size) throw new IndexOutOfBoundsException();
-		if(insertPos.getPos()<0)throw new IndexOutOfBoundsException();
+		if(insertPos.getPos()>Size){
+			count();
+			throw new IndexOutOfBoundsException();
+		}
+		if(insertPos.getPos()<0){
+			count();
+			throw new IndexOutOfBoundsException();
+		}
 		int index =0;
+		count();
 		Elem prev = startElem;
+		count();
 		while(index<insertPos.getPos()){
 			prev=prev.getNext();
+			count();
 			index++;
+			count();
 		}
 		Elem after = prev.getNext();
+		count();
 		prev.setNext(insertElem);
+		count();
 		insertElem.setNext(after);
+		count();
 		Size++;	
+		count();
 	}
 
 	/**
@@ -64,21 +95,40 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	 * @throws IndexOutOfBoundsException
 	 */
 	public void delete(Pos deletePos) throws IndexOutOfBoundsException {
-		if(deletePos.getPos()>Size) throw new IndexOutOfBoundsException();
-		if(Size==0)throw new IndexOutOfBoundsException();
-		if(deletePos.getPos()<0) throw new IndexOutOfBoundsException();
+		if(deletePos.getPos()>Size){
+			count();
+			throw new IndexOutOfBoundsException();
+		}
+		if(Size==0){
+			count();
+			throw new IndexOutOfBoundsException();
+		}
+		if(deletePos.getPos()<0){
+			count();
+			throw new IndexOutOfBoundsException();
+		}
 		Elem<T> elem = startElem;
+		count();
 		Elem<T> prev = new Elem<T>();
+		count();
 		 Pos position = new Pos(0);
+		 count();
 	        while (position.getPos()<deletePos.getPos()){
 	        	position.set(position.getPos()+1);//erhöhe position um 1
+	        	count();
 	        	prev = elem; // setze als vorheriges elem das aktuelle
+	        	count();
 	        	elem = elem.getNext(); //gehe ein elem weiter
+	        	count();
 	        }
 	        Elem<T> temp = elem.getNext(); //nimm das element nach dem zu löschendem
+	        count();
 	        elem.setData(null); //entferne den Inhalt des zu löschenden Obj
+	        count();
 	        prev.setNext(temp);// setzte den Zeiger von dem elem vor dem zu löschenden auf das elem nach dem gelöschten
-	        Size--;   
+	        count();
+	        Size--; 
+	        count();
 	}
 
 	/**
@@ -89,19 +139,27 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	 */
 	public void delete(T deleteKey) throws ElementNotFoundException {
 		Elem<T> temp = new Elem(deleteKey);
+		count();
 		Elem<T> prev = startElem;
+		count();
 		addStopAtEnd(temp);
+		count();
 		while(!prev.getNext().equals(temp)){
 			prev =prev.getNext();
+			count();
 		}
 		if(prev.getNext().getNext()==endElem){
 			removeStopAtEnd();
+			count();
 			throw new ElementNotFoundException();
 		}else{
 			temp=prev.getNext().getNext();
+			count();
 			prev.setNext(temp);
+			count();
 		}
 		Size--;
+		count();
 		
 	}
 	
@@ -113,18 +171,26 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	 */
 	
 	private Elem<T> findPrevious(Elem<T> exakt) throws ElementNotFoundException{
-		if(this.Size==1) return startElem.getNext();
+		if(this.Size==1){
+			count();
+			return startElem.getNext();
+		}
 		Elem<T> elem = startElem;
+		count();
 		addStopAtEnd(exakt);
+		count();
 		while(elem.getNext()!=exakt){
 			elem=elem.getNext();
+			count();
 		}
 		if(elem==endElem &&elem.getNext()!=endElem){
 			removeStopAtEnd();
+			count();
 			throw new ElementNotFoundException();
 			
 		}
 		removeStopAtEnd();
+		count();
 		return elem;
 	}
 
@@ -136,20 +202,35 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	 * @throws ElementNotFoundException
 	 */
 	public Pos find(Elem findElem) {		
-		if(this.Size==0)return new Pos(-1);
-		if(this.Size==1)return new Pos(0);
+		if(this.Size==0){
+			count();
+			return new Pos(-1);
+			
+		}
+		if(this.Size==1){
+			count();
+			return new Pos(0);
+		}
 		Elem elem = startElem;
+		count();
 		addStopAtEnd(findElem);
-		Pos position = new Pos(0);	
+		count();
+		Pos position = new Pos(0);
+		count();
 		while (!elem.equals(findElem)){	
 			position.set(position.getPos()+1);//erhöhe position um 1
+			count();
 			elem=elem.getNext(); //gehe ein elem weiter
+			count();
 	        }
 		if(elem.getNext()==(endElem)){		
 			removeStopAtEnd();
+			count();
 			position.set(-1);
+			count();
 			}
-	    removeStopAtEnd(); 
+	    removeStopAtEnd();
+	    count();
 	    return position;
 	}
 
@@ -161,17 +242,20 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	 */
 	public Elem<T> retrieve(Pos retrievePos) throws IndexOutOfBoundsException {
 		if(retrievePos.getPos()>=Size){
-			
+			count();
 			throw new IndexOutOfBoundsException();
 		}
 		Elem<T> elem = startElem;
-		
+		count();
 		 Pos position = new Pos(-1);
+		 count();
 	        while (elem.getNext()!=endElem && position.getPos()!=retrievePos.getPos()){
+	        	count();
 	        	position.set(position.getPos()+1);//erhöhe position um 1
-	        	
+	        	count();
 	        	elem=elem.getNext(); //gehe ein elem weiter
 	        }
+	        count();
 		return elem;
 	}
 
@@ -183,28 +267,48 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	@Override
 	public void concat(OwnList<T> otherList) {
 		if(otherList.getClass().equals(this.getClass())){
-			if(Size==0 && otherList.size()==0) return;
-			if(otherList.size()==0)return;
+			count();
+			if(Size==0 && otherList.size()==0){
+				count();
+				return;
+			}
+			if(otherList.size()==0){
+				count();
+				return;
+			}
 			if(Size==0 && otherList.size()!=0){
 				startElem = ((SingleLinkedList)otherList).getStartElem();
+				count();
 				endElem = ((SingleLinkedList)otherList).getEndElem();
+				count();
 				Size=otherList.size();
+				count();
+				return;
 			}
+			
 			Elem elem =startElem;
+			count();
 			int counter =0;
+			count();
 			while(elem.getNext()!=(endElem)){
+				
 				elem = elem.getNext();
+				count();
 				counter++;
+				count();
 			}
-			System.out.println("Counter:" + counter);
+			
 			//setze den Zeiger dieses Elements auf das erste element der otherList nach dem start elem.
 			
 			elem.setNext(((SingleLinkedList)otherList).getStartElem().getNext());
+			count();
 			//ändere das endElement auf das endElem der anderen Liste
 			endElem=((SingleLinkedList)otherList).getEndElem();
+			count();
 			updateSize(Size, otherList.size());
-		
+			count();
 		}else{
+			count();
 			//TODO 
 		}
 		
@@ -212,24 +316,10 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	
 	private void updateSize(int a, int b) {
 		Size = a+b;	
-	}
-	/**
-	 * Inserts a Stop Element at the beginning;
-	 * @param newElement
-	 */
-	private void addStopAtStart(Elem<T> newElement){
-		Elem<T> elem = startElem.getNext();
-		startElem.setNext(newElement);
-		newElement.setNext(elem);
+		count();
 	}
 	
-	/**
-	 * Removes a Stop Element
-	 */
-	private void removeStopAtStart(){
-		Elem<T> elem = startElem.getNext().getNext();
-		startElem.setNext(elem);
-	}
+	
 	
 	/**
 	 * Adds a Stop Element at the End
@@ -237,11 +327,15 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	 */
 	private void addStopAtEnd(Elem<T> newElem){
 		Elem<T> elem = startElem;
+		count();
 		while(elem.getNext()!=endElem){
 			elem=elem.getNext();
+			count();
 		}
 		elem.setNext(newElem);
+		count();
 		newElem.setNext(endElem);
+		count();
 		
 	}
 	
@@ -250,10 +344,13 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	 */
 	private void removeStopAtEnd(){
 		Elem<T> elem = startElem;
+		count();
 		while(elem.getNext().getNext()!=endElem){
 			elem = elem.getNext();
+			count();
 		}
 		elem.setNext(endElem);
+		count();
 		
 	}
 	
@@ -263,34 +360,45 @@ public class SingleLinkedList<T> implements OwnList<T>{
 
 	
 	public Elem<T> getStartElem() {
+		count();
 		return startElem;
+		
 	}
 
 
 
 	public void setStartElem(Elem<T> startElem) {
+		count();
 		this.startElem = startElem;
 	}
 
 
 
 	public Elem<T> getEndElem() {
+		count();
 		return endElem;
 	}
 
 
 
 	public void setEndElem(Elem<T> endElem) {
+		count();
 		this.endElem = endElem;
 	}
 
 
 
 	public int size() {
+		count();
 		// TODO Auto-generated method stub
 		return Size;
 	}
 	
+	private void count() {
+        if(counter != null){
+            counter.counterUp(1);
+        }
+    }
 
 
 }

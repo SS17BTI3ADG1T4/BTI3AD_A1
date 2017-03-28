@@ -155,16 +155,6 @@ public class SingleLinkedListTest {
 		
 	}
 
-	/**
-	 * Tries to concatenate two empty Lists
-	 * @throws ElementNotFoundException
-	 */
-	@Test
-	public void testConcatSingleLinkedListOfT() throws ElementNotFoundException {
-		SingleLinkedList List = new SingleLinkedList<>();
-		SingleLinkedList List2 = new SingleLinkedList<>();
-		assertEquals(new Integer(List.concat(List2)),  new Integer(-1));
-	}
 	
 	/**
 	 * Tries to concatenate a filled List and a Empty List2
@@ -176,8 +166,9 @@ public class SingleLinkedListTest {
 		Elem elem= new Elem<>("Test");
 		List.add(elem);
 		SingleLinkedList List2 = new SingleLinkedList<>();
-		
-		assertEquals(new Integer(List.concat(List2)), new Integer(-2));
+		int size = List.size();
+		List.concat(List2);
+		assertEquals(size, List.size());
 	}
 	
 	/**
@@ -188,11 +179,11 @@ public class SingleLinkedListTest {
 	public void testConcatSingleLinkedListOfT3() throws ElementNotFoundException {
 		SingleLinkedList List = new SingleLinkedList<>();
 		Elem elem= new Elem<>("Test");
-	
 		SingleLinkedList List2 = new SingleLinkedList<>();
-		List2.add(elem);
-		
-		assertEquals(new Integer(List.concat(List2)), new Integer(-1));
+		List2.add(elem);	
+		int size = List2.size();
+		List.concat(List2);
+		assertEquals(size, List.size());
 	}
 	
 	/**

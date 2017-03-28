@@ -29,9 +29,9 @@ public class ListBenchMark {
 
         switch(type){
             case (0):
-//                listUnderTest = new HeapList<Integer>(counter);
-//                otherList = new HeapList<Integer>();
-//                break;
+                listUnderTest = new SingleLinkedList<Integer>(counter);
+                otherList = new SingleLinkedList<Integer>();
+                break;
             case (1):
                 listUnderTest = new DoubleLinkedList<Integer>(counter);
                 otherList = new DoubleLinkedList<Integer>();
