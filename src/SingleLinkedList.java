@@ -139,7 +139,7 @@ public class SingleLinkedList<T> implements OwnList<T>{
 	 */
 	@Override
 	public void delete(T deleteKey) throws ElementNotFoundException {
-		Elem<T> temp = new Elem(deleteKey);
+		Elem<T> temp =deleteKey;
 		count();
 		Elem<T> prev = startElem;
 		count();
