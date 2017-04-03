@@ -16,8 +16,14 @@ public class Array<T> implements OwnList<T> {
 	 * Konstruktor
 	 */
 
+	@SuppressWarnings("unchecked")
 	public Array(int K, int length) {
-		this.K = K;
+		if(K<=1){
+			this.K = 1;
+		}
+		else {
+		this.K = K;	
+		}
 		this.size = 0;
 		this.array = new Elem[length];
 		this.counter = new Counter();
@@ -44,7 +50,9 @@ public class Array<T> implements OwnList<T> {
 	 * Diese Methode vergrößert das Array um K. (K wird einmalig beim erzeugen
 	 * des Objektes gesetzt)
 	 */
+	@SuppressWarnings("unchecked")
 	private void resize(Elem<T>[] array) {
+		@SuppressWarnings("rawtypes")
 		Elem[] newArray = new Elem[array.length + K];
 		counter.counterUp(2); // Array erzeugen + laenge berechnen
 		System.arraycopy(this.array, 0, newArray, 0, array.length);
@@ -100,7 +108,7 @@ public class Array<T> implements OwnList<T> {
 	}
 
 	@Override
-	public void delete(Elem<T> key) throws IndexOutOfBoundsException {
+	public void delete(Elem<T> key) throws IndexOutOfBoundsException,ElementNotFoundException {
 		delete(find(key));
 	}
 
@@ -109,7 +117,7 @@ public class Array<T> implements OwnList<T> {
 	 * aus.
 	 */
 	@Override
-	public Pos find(Elem<T> findElem) {
+	public Pos find(Elem<T> findElem) throws ElementNotFoundException{
 		Pos position = new Pos(-1);
 		for (int i = 0; i < size; i++) {
 			counter.counterUp(1); // i erhoehen
@@ -119,7 +127,7 @@ public class Array<T> implements OwnList<T> {
 				return position;
 			}
 		}
-		return position;
+		throw new ElementNotFoundException();
 	}
 
 	/**
@@ -164,7 +172,7 @@ public class Array<T> implements OwnList<T> {
 		counter.counterUp(1);
 		return this.size;
 	}
-/**
+
 	public static void main(String[] args) {
 
 
@@ -191,9 +199,7 @@ public class Array<T> implements OwnList<T> {
 		
 
 		arr.delete(new Pos(0));
-		arr.delete(new Elem<Integer>(3));
-		System.out.println(arr.find(new Elem<Integer>(2)).getPos());
-		System.out.println(arr.find(new Elem<Integer>(4)).getPos());
+
 	}
-	*/
+	
 }
